@@ -48,15 +48,62 @@ def index(request):
 #     return redirect('http://www.baidu.com')
 #
 
+# def login(request):
+#     print(request.POST)
+#     return HttpResponse('login')
+#
+# def book(request,cat_id,book_id):
+#     keyword = request.GET.getlist('keyword')
+#     print(request.GET)
+#     return HttpResponse(keyword)
+#
+#
+# import json
+# def login_json(request):
+#     body = request.body
+#     body_str = body.decode()
+#     body_dict = json.loads(body_str)
+#     print(body_dict)
+#     return HttpResponse('json')
+#
+# def header(request):
+#     if request.method == 'GET':
+#         print('GET')
+#     elif request.method == 'POST':
+#         print('POST')
+#     else:
+#         print(request.method)
+#
+#
+#     return HttpResponse('header')
+#
+#
+# def detail(request):
+#     result = HttpResponse(content='detail',content_type='text/html',status=200)
+#     result['name'] = 'jack'
+#     return result
+#
+#
+# from django.http import JsonResponse
+# def jsonresponse(request):
+#     userinfo = {
+#         'name' : 'jack',
+#         'password' : 123456
+#     }
+#
+#     return JsonResponse(userinfo)
+#
+# from django.shortcuts import redirect
+# def to_index(request):
+#     return redirect("http://www.baidu.com/")
+
 def login(request):
     print(request.POST)
     return HttpResponse('login')
 
 def book(request,cat_id,book_id):
     keyword = request.GET.getlist('keyword')
-    print(request.GET)
     return HttpResponse(keyword)
-
 
 import json
 def login_json(request):
@@ -73,29 +120,27 @@ def header(request):
         print('POST')
     else:
         print(request.method)
-
-
+    head = request.META
+    print(head)
     return HttpResponse('header')
 
-
 def detail(request):
-    result = HttpResponse(content='detail',content_type='text/html',status=200)
+    result = HttpResponse(content='detail',content_type='text/http',status=200)
     result['name'] = 'jack'
     return result
 
-
 from django.http import JsonResponse
 def jsonresponse(request):
-    userinfo = {
+    info = {
         'name' : 'jack',
         'password' : 123456
     }
-
-    return JsonResponse(userinfo)
+    return JsonResponse(info)
 
 from django.shortcuts import redirect
 def to_index(request):
-    return redirect("http://www.baidu.com/")
+    return redirect('http://www.qq.com')
+
 
 
 
