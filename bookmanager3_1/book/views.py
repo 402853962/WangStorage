@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import json
 
 # Create your views here.
 def index(request):
@@ -14,7 +15,19 @@ def login(request):
     print(request.POST)
     return HttpResponse('login')
 
+def login_json(request):
+    body = request.body
+    # print(body)
+    body_str = body.decode()
+    # print(body_str)
+    body_dict = json.loads(body_str)
+    print(body_dict)
+    return HttpResponse('json')
 
+def header(request):
+
+    print(request.META)
+    return HttpResponse('header')
 
 
 
