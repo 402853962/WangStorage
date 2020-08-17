@@ -29,6 +29,24 @@ def header(request):
     print(request.META)
     return HttpResponse('header')
 
+def detail(request):
+    return HttpResponse(content='内容',content_type='text/html',status=200)
+
+from django.http import JsonResponse
+def jsonresponse(request):
+
+    userinfo = {
+        'user_id' : 111,
+        'username' : 'itcast'
+    }
+
+
+    return JsonResponse(userinfo)
+
+
+from django.shortcuts import redirect
+def to_index(request):
+    return redirect('http://www.baidu.com')
 
 
 
