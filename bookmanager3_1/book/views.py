@@ -5,6 +5,27 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse('ok')
 
+def book(request,book_id,cat_id):
+    keyword=request.GET.getlist('keyword')
+
+    return HttpResponse(keyword)
+
+def login(request):
+    print(request.POST)
+    return HttpResponse('login')
+
+
+
+
+
+
+
+
+
+
+
+
+
 from book.models import BookInfo,PeopleInfo
 
 BookInfo.objects.filter(peopleinfo__name='郭靖')
