@@ -161,65 +161,117 @@ from django.core.paginator import Paginator
 
 ######################################################################
 ######################################################################
+# def baidu_tieba(request,tieba_id):
+#     return HttpResponse(tieba_id)
+
+# def tieba_register(request,phone):
+#     return HttpResponse(phone)
+
+# def tieba_login(request):
+#     username = request.GET.get('username')
+#     result = HttpResponse('set_cookie')
+#     result.set_cookie(key='username',value=username,max_age=30)
+#     return result
+
+# def get_cookies(request):
+#
+#     print(request.COOKIES)
+#     username = request.COOKIES.get('username')
+#     return HttpResponse(username)
+
+# def set_session(request):
+#     request.session['user_id'] =15423132312
+#     return HttpResponse('set_session')
+
+# def get_session(request):
+#     user_id = request.session['user_id']
+#     #删除数据
+#     request.session.clear()
+#     #删除数据以及key
+#     request.session.flush()
+#     #设置过期时间,None为默认，两周
+#     request.session.set_expiry(30)
+#     return HttpResponse(user_id)
+
+# def jd_register(request):
+#     if request.method == 'GET':
+#         print('GET')
+#     elif request.method == 'POST':
+#         print('POST')
+#     else:
+#         return HttpResponse('other')
+#
+#     return HttpResponse('jd_register')
+
+# from django.views import View
+# class RegisterView(View):
+#     def get(self,request):
+#         return HttpResponse('view get')
+#     def post(self,request):
+#         return  HttpResponse('view post')
+#     def other(self,request):
+#         pass
+
+# from django.contrib.auth.mixins import LoginRequiredMixin
+# class CenterView(LoginRequiredMixin,View):
+#     def  get(self,request):
+#         return HttpResponse('个人中心 get')
+#     def post(self,request):
+#         return HttpResponse('个人中心 post')
+
+#######################################################################
+#######################################################################
+
 def baidu_tieba(request,tieba_id):
-    return HttpResponse(tieba_id)
+    return HttpResponse('tieba_id')
 
 def tieba_register(request,phone):
-    return HttpResponse(phone)
+    return HttpResponse('phone')
 
 def tieba_login(request):
     username = request.GET.get('username')
-    result = HttpResponse('set_cookie')
-    result.set_cookie(key='username',value=username,max_age=30)
+    result = HttpResponse('set_cookies')
+    result.set_cookie(key='username',value='jack',max_age=60)
     return result
 
 def get_cookies(request):
-
-    print(request.COOKIES)
     username = request.COOKIES.get('username')
     return HttpResponse(username)
 
 def set_session(request):
-    request.session['user_id'] =15423132312
+    request.session['user_id']=123456
     return HttpResponse('set_session')
 
 def get_session(request):
     user_id = request.session['user_id']
-    #删除数据
     request.session.clear()
-    #删除数据以及key
     request.session.flush()
-    #设置过期时间,None为默认，两周
     request.session.set_expiry(30)
-    return HttpResponse(user_id)
+    return HttpResponse('get_session')
 
 def jd_register(request):
     if request.method == 'GET':
-        print('GET')
+        return HttpResponse('get')
     elif request.method == 'POST':
-        print('POST')
+        return HttpResponse('post')
     else:
         return HttpResponse('other')
-
-    return HttpResponse('jd_register')
 
 from django.views import View
 class RegisterView(View):
     def get(self,request):
-        return HttpResponse('view get')
+        return HttpResponse('get')
     def post(self,request):
-        return  HttpResponse('view post')
+        return HttpResponse('post')
     def other(self,request):
         pass
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 class CenterView(LoginRequiredMixin,View):
-    def  get(self,request):
-        return HttpResponse('个人中心 get')
+    def get(self,request):
+        return HttpResponse('get')
     def post(self,request):
-        return HttpResponse('个人中心 post')
-
-
+        return HttpResponse('post')
 
 
 

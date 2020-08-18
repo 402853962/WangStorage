@@ -4,7 +4,16 @@ from book import views
 from django.urls import converters
 # book,login_json,header,detail,jsonresponse,to_index
 
-
+######################################
+# class MobileConverter:
+#     regex='1[3-9]\d{9}'
+#
+#     def to_python(self,value):
+#         return value
+#
+# converters.register_converter(MobileConverter,'mobile')
+######################################
+######################################
 class MobileConverter:
     regex='1[3-9]\d{9}'
 
@@ -12,6 +21,7 @@ class MobileConverter:
         return value
 
 converters.register_converter(MobileConverter,'mobile')
+######################################
 
 urlpatterns = [
     path('index/',index),
