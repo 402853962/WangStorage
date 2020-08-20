@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <a href="#">{{username}}</a>
+        <br>
+        <a v-bind:href="home">[[username]]</a>
+    </div>
+    <div id="app1">
+        {{massage}}
+        <hr>
+        <span v-if='ok'>
+            用户名太受欢迎了
+        </span>
+        <span v-else>用户名非常丑陋</span>
+        <hr>
+        <span v-if='level === 1'>皇帝</span>
+        <span v-else-if='level === 2'>国舅</span>
+        <span v-else-if='level === 3'>国戚</span>
+        <span v-else-if='level === 4'>大臣</span>
+    </div>
+    <hr>
+    <div id='list1'>
+        {{message}}
+        <ul>
+            <li v-for='(item,index) in news'>{{index+1}}.{{item}}</li>
+        </ul>
+        <br>
+        <ul>
+            <li v-for='(value,name) in person'>{{value}}:{{name}}</li>
+        </ul>
+        <br>
+        <ul>
+            <li v-for='people in friends'>{{people.name}} : {{people.age}}</li>
+        </ul>
+        <hr>
+        <hr>
+    </div>
+    <div id='methods'>
+        <p>{{message}}</p>
+        <button v-on:click="count+=1">Add 1</button>
+        <p>总共点击了{{count}}次</p>
+    </div>
+    <hr>
+    <div id='form'>
+        {{message}}
+        <table>
+            <tr>
+                <td>用户名：</td>
+                <td><input type="text" name="username" v-model='username'></td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td><input type="password" name="password" v-model='password'></td>
+            </tr>
+            <tr>
+                <td>性别：</td>
+                <td>
+                    男  <input type="radio" name="sex" value="男" v-model='sex'>
+                    女  <input type="radio" name="sex" value="女" v-model='sex'>
+                </td>
+            </tr>
+            <tr>
+                <td>爱好：</td>
+                <td>
+                    画画<input type="checkbox" name="hobby" value="画画" v-model='hobby'>
+                    拍照<input type="checkbox" name="hobby" value="拍照" v-model='hobby'>
+                    篮球<input type="checkbox" name="hobby" value="篮球" v-model='hobby'>
+                </td>
+            </tr>
+            <tr>
+                <td>所在城市：</td>
+                <td>
+                    <select name="city" v-model='city'>
+                        <option value="北京">北京</option>
+                        <option value="上海">上海</option>
+                        <option value="广州">广州</option>
+                        <option value="深圳">深圳</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>个人简介：</td>
+                <td>
+                    <textarea name="desc" cols="30" rows="10" v-model='desc'></textarea>
+                </td>
+            </tr>
+        </table>
+        <button @click='showMessage'>提交</button>
+        <hr>
+    </div>
+    <div id="todo">
+        {{message}}<br>
+        <input type="text" name="todo" v-model='recieve'>
+        <input type="button" value="提交" @click='show'>
+        <hr>
+        <ul>
+            <li v-for="item in recieves">{{item}}</li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">       
+    var app = new Vue({
+        el: '#app',
+        delimiters:["[[","]]"],
+        data: {
+            username: 'jackson',
+            home: 'http://www.baidu.com'
+        }
+    })
+    var app = new Vue({
+        el: '#app1',
+        data:{
+            massage:'hello',
+            ok: false,
+            level: 2,
+        }
+    })
+    
+    var app = new Vue({
+        el: '#list1',
+        data:{
+            massage:'cool',
+            news:['信息1','信息2','信息3'],
+            person:{
+                name:'阿三',
+                address:'印度',
+                like:'咖喱'
+            },
+            friends:[
+                {
+                    name:'Jack',
+                    age:'18',
+                    gender:'male'
+                },
+                {
+                    name:'Lucy',
+                    age:'15',
+                    gender:'female'
+                },
+                {
+                    name:'kevin',
+                    age:'33',
+                    gender:'male'
+                }
+            ]
+        }
+    })
+
+    var app = new Vue({
+        el: '#methods',
+        data: {
+            message:'methods!',
+            count:0
+        }
+    })
+
+    var app = new Vue({
+        el: '#form',
+        data: {
+            message:'form!',
+            username:'',
+            password:'',
+            sex:'',
+            hobby:[],
+            city:'',
+            desc:''
+        },
+        methods: {
+            showMessage: function(){
+                alert(this.username+'\n'+this.password+'\n'+this.sex+'\n'+this.hobby+'\n'+this.city+'\n'+this.desc)
+            }
+        }
+    })
+    
+    var app = new Vue ({
+        el: '#todo',
+        data: {
+            message: 'todo test',
+            recieve:'',
+            recieves:[]
+        },
+        methods: {
+            show: function(){
+                this.recieves.push(this.recieve)
+            }
+        }
+    })
+</script>
+</html>
